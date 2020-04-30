@@ -153,6 +153,8 @@ public:
 
   bool IsGCCOnWindows() const { return UsingGCCOnWindows; }
 
+  bool IsCBOnWindows() const { return true; }
+
 public:
   cmGlobalNinjaGenerator(cmake* cm);
 

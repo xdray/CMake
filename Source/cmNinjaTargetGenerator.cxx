@@ -987,7 +987,8 @@ void cmNinjaTargetGenerator::WriteObjectBuildStatement(
     cmStrCat(this->GeneratorTarget->GetSupportDirectory(),
              this->GetGlobalGenerator()->ConfigDirectory(config)));
   std::string const objectFileName =
-    this->ConvertToNinjaPath(this->GetObjectFilePath(source, config));
+    //this->ConvertToNinjaPath(this->GetObjectFilePath(source, config));
+    this->GetObjectFilePath(source, config);
   std::string const objectFileDir =
     cmSystemTools::GetFilenamePath(objectFileName);
 

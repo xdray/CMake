@@ -129,7 +129,7 @@ std::string cmGlobalNinjaGenerator::EncodePath(const std::string& path)
 {
   std::string result = path;
 #ifdef _WIN32
-  if (this->IsGCCOnWindows())
+  if (this->IsGCCOnWindows() || this->IsCBOnWindows())
     std::replace(result.begin(), result.end(), '\\', '/');
   else
     std::replace(result.begin(), result.end(), '/', '\\');
@@ -972,7 +972,10 @@ std::string const& cmGlobalNinjaGenerator::ConvertToNinjaPath(
   std::string convPath = ng.MaybeConvertToRelativePath(bin_dir, path);
   convPath = this->NinjaOutputPath(convPath);
 #ifdef _WIN32
-  std::replace(convPath.begin(), convPath.end(), '/', '\\');
+  if (!this->IsGCCOnWindows())
+  {
+    std::replace(convPath.begin(), convPath.end(), '/', '\\');
+  }
 #endif
   return ConvertToNinjaPathCache.emplace(path, std::move(convPath))
     .first->second;

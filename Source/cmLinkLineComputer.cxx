@@ -84,8 +84,9 @@ void cmLinkLineComputer::ComputeLinkLibs(
     BT<std::string> linkLib;
     if (item.IsPath) {
       linkLib.Value += cli.GetLibLinkFileFlag();
-      linkLib.Value += this->ConvertToOutputFormat(
-        this->ConvertToLinkReference(item.Value.Value));
+      //linkLib.Value += this->ConvertToOutputFormat(
+      //  this->ConvertToLinkReference(item.Value.Value));
+      linkLib.Value += this->ConvertToLinkReference(item.Value.Value);
       linkLib.Backtrace = item.Value.Backtrace;
     } else {
       linkLib = item.Value;
